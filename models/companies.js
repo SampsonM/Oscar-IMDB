@@ -7,4 +7,4 @@ const Company = new mongoose.Schema({
   description: String
 });
 
-module.exports = mongoose.model('companies', Company);
+module.exports = mongoose.model('Company', Company);
