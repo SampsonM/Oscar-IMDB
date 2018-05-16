@@ -1,18 +1,18 @@
 const app = require('../app');
-const Company = require('../models/companiesModel');
+const Company = require('../models/companies');
 
 function getCompanies (req, res, next) {
-  companies.find()
+  Company.find()
     .then(companies => {
       return res.send(companies)
     })
     .catch(err => console.log('err getting companies: ', err))
 }
 
-function getCompanyById (res, res, next) {
+function getCompanyById (req, res, next) {
   const companyId = req.params.company_id;
   
-  companies.find({ _id: companyId })
+  Company.find({ _id: companyId })
     .then(company => {
       return res.send(company)
     })
@@ -20,7 +20,7 @@ function getCompanyById (res, res, next) {
 }
 
 function postCompany (res, req, next) {
-  companies.
+  
 }
 
 module.exports = {

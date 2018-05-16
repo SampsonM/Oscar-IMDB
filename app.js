@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
-const apiRouter = require('./routes/api-router');
+const apiRouter = require('./routes/router');
 
 mongoose.connect(DB_URL, () => {
   console.log('connected to mongo')

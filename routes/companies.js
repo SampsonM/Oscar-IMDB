@@ -3,7 +3,7 @@ const {
   getCompanies,
   getCompanyById,
   postCompany
-} = require('../controllers/company-controller');
+} = require('../controllers/companies');
 
 companyRouter.post('/', postCompany)
 

@@ -15,8 +15,10 @@ function seedMoviedb (companyDocs, actorDocs) {
     cast = cast.map(numericalId => actorIds[numericalId]); // use a object keys loop to refuse null vals
     productionCompanies = production_companies.map(numericalId => companyIds[numericalId]);
     genres = genres.map(genre => genre.name);
-    return { vote_count, title, cast, genres, production_companies }
+    movie = { vote_count, title, cast, genres, production_companies };
+    return movie;
   })
+  // console.log(newMovieData)
   return Movie.insertMany(newMovieData)
 }
 
@@ -45,6 +47,9 @@ function seedDB () {
     console.log(`inserted ${actorDocs.length} Actors`);
    return seedMoviedb(companyDocs, actorDocs)
   })
+  // .then(movie => {
+  //   // console.log(movie)
+  // })
   .catch(err => console.log({err}))
 }
 
