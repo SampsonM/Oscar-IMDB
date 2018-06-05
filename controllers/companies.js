@@ -16,11 +16,16 @@ function getCompanyById (req, res, next) {
     .then(company => {
       return res.send(company)
     })
-    .then(err => console.log('err getting company by ID: ', err))
+    .catch(err => {
+      console.log('err getting company by ID: ')
+    })
 }
 
 function postCompany (res, req, next) {
-  
+  Company.find()
+    .then(companies => {
+      console.log(companies)
+    })
 }
 
 module.exports = {

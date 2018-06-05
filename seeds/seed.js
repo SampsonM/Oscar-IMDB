@@ -18,7 +18,6 @@ function seedMoviedb (companyDocs, actorDocs) {
     movie = { vote_count, title, cast, genres, production_companies };
     return movie;
   })
-  // console.log(newMovieData)
   return Movie.insertMany(newMovieData)
 }
 
@@ -32,7 +31,7 @@ function generateIDS (data, docs) {
 function seedDB () {
   return mongoose.connection.dropDatabase()
   .then(() => {
-    console.log('database droppped!');
+    console.log('Seeding DB, initial database drop.');
     newActorData = actorData.map(actor => {
       actor.AKA = actor.also_known_as;
       return actor;
@@ -45,11 +44,15 @@ function seedDB () {
   .then(([companyDocs, actorDocs]) => {
     console.log(`inserted ${companyDocs.length} companies`);
     console.log(`inserted ${actorDocs.length} Actors`);
-   return seedMoviedb(companyDocs, actorDocs)
+    return Promise.all([seedMoviedb(companyDocs, actorDocs), companyDocs, actorDocs])
   })
-  // .then(movie => {
-  //   // console.log(movie)
-  // })
+  .then(([movieData, companyDocs, actorDocs]) => {
+    return {
+      movieData,
+      companyDocs,
+      actorDocs
+    }
+  })
   .catch(err => console.log({err}))
 }
 
